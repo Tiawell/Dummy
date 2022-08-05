@@ -1,14 +1,12 @@
-using System;
+using UnityEngine.Events;
+using UnityEngine;
 
 public class EventManager
 {
-    public static Action<Health, int> OnTakeDamage;
+    public static UnityEvent<GameObject, int> OnTakeDamage = new UnityEvent<GameObject, int>();
 
-    public static void SendTakeDamage(Health health, int value)
+    public static void SendTakeDamage(GameObject target, int value)
     {
-        if(OnTakeDamage != null)
-        {
-            OnTakeDamage.Invoke(health, value);
-        }
+        OnTakeDamage.Invoke(target, value);
     }
 }

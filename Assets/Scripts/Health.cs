@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     }
     public void Reduce(int value)
     {
-        EventManager.SendTakeDamage(this, value);
+        EventManager.SendTakeDamage(gameObject, value);
         Current -= value;
         if(Current <= 0)
         {
