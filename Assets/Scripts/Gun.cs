@@ -18,8 +18,7 @@ public class Gun : Weapon
         {
             if (hit.transform.gameObject.TryGetComponent(out Health health))
             {
-                int damage = SceneController.Instance.CalculateDamage(Damage, health);
-                SceneController.Instance.DealDamage(damage, health);
+                health.Reduce(SceneController.Instance.CalculateDamage(Damage, health));
             }
         }
     }

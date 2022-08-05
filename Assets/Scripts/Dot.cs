@@ -18,7 +18,7 @@ public class Dot : MonoBehaviour
         Timer += Time.deltaTime;
         if(Timer >= TimeToTick)
         {
-            SceneController.Instance.DealDamage(Damage, Health);
+            Health.Reduce(Damage);
             Timer -= TimeToTick;
         }
         if(State.GetBurnTimer() <= 0)

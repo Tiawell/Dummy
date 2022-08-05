@@ -33,6 +33,7 @@ public class SceneController : MonoBehaviour
     {
         DummyHealth = Dummy.GetComponent<Health>();
         DummyState = Dummy.GetComponent<State>();
+        EventManager.OnTakeDamage += ShowDamage;
     }
     void Update()
     {
@@ -63,18 +64,13 @@ public class SceneController : MonoBehaviour
         }
         return damage;
     }
-    public void DealDamage(int damage, Health health)
-    {
-        health.Reduce(damage);
-        ShowDamage(health.gameObject, damage);
-    }
-    public void ShowDamage(GameObject target, int value)
+    public void ShowDamage(Health health, int value)
     {        
         GameObject text = Instantiate(DamageText);
         text.transform.SetParent(Canvas.transform);
         text.GetComponent<Text>().text = value.ToString();
         DamageText damageText = text.AddComponent<DamageText>();
-        damageText.Target = target;
+        damageText.Target = health.gameObject;
         damageText.LifeTime = DamageTextTime;
     }
     private void UpdateBar(GameObject bar, float value)

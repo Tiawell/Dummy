@@ -28,7 +28,7 @@ public class FireSpray : MonoBehaviour
                 state.SetBurnState(DotLifeTime);
                 if (other.TryGetComponent(out Health health))
                 {
-                    SceneController.Instance.DealDamage(BaseDamage, health);
+                    health.Reduce(BaseDamage);
 
                     if (other.TryGetComponent(out Dot dot))
                     {
